@@ -4,7 +4,6 @@ This service sits between the Expo app and Supabase for application data and loy
 
 Supabase still owns:
 - authentication
-- storage buckets
 - database tables and RPCs
 
 This backend owns:
@@ -69,16 +68,15 @@ Authorization: Bearer <supabase_access_token>
 
 1. Create a new service from the `backend` directory.
 2. Set the environment variables above.
-3. Use:
+3. [`backend/railway.json`](/Users/safari/Desktop/GoldenIce/backend/railway.json) is included.
+4. Use:
    - Build command: `npm install`
    - Start command: `npm start`
 
 ### Render
 
-1. Create a new Web Service pointed at the `backend` directory.
-2. Set:
-   - Build command: `npm install`
-   - Start command: `npm start`
+1. [`render.yaml`](/Users/safari/Desktop/GoldenIce/render.yaml) is included at the repo root.
+2. Create a new Blueprint or Web Service from the repo.
 3. Add the environment variables above.
 
 ## App configuration
@@ -90,3 +88,10 @@ EXPO_PUBLIC_BACKEND_URL=https://your-backend-domain.com
 ```
 
 The app will keep using Supabase directly for auth and receipt storage uploads, but database reads and writes now go through this backend service.
+
+## Production checklist
+
+1. Fill out [`backend/.env.example`](/Users/safari/Desktop/GoldenIce/backend/.env.example) values in your host.
+2. Confirm `GET /health` responds from the deployed URL.
+3. Set `ALLOWED_ORIGINS` to your actual app/web origins.
+4. Update the app with the deployed backend URL.
