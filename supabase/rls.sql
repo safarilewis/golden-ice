@@ -31,21 +31,6 @@ as $$
   where id = auth.uid()
 $$;
 
-create policy "receipt uploads by staff or owner"
-on storage.objects
-for insert
-to authenticated
-with check (
-  bucket_id = 'receipts'
-  and public.current_role() in ('staff', 'owner')
-);
-
-create policy "receipt reads by authenticated users"
-on storage.objects
-for select
-to authenticated
-using (bucket_id = 'receipts');
-
 create policy "profiles read own or managed"
 on public.profiles
 for select

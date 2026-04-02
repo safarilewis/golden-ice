@@ -1,9 +1,5 @@
 create extension if not exists pgcrypto;
 
-insert into storage.buckets (id, name, public)
-values ('receipts', 'receipts', true)
-on conflict (id) do nothing;
-
 create table if not exists public.profiles (
   id uuid primary key references auth.users(id) on delete cascade,
   phone text not null,
